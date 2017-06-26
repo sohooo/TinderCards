@@ -44,6 +44,11 @@ export default class Cards extends Component {
     console.log('_resetState()')
     this._deltaX.setValue(0)
     this._goToNextPerson()
+
+    // TODO: replace with changePosition(), when published as npm module
+    // https://github.com/wix/react-native-interactable#interactableview-methods
+    // this.refs.myCard.changePosition({x: 0, y: 0})
+    this.refs.myCard.snapTo({index: 1})
   }
 
   _onCardSnap(event) {
@@ -60,7 +65,7 @@ export default class Cards extends Component {
     console.log(this.state)
     return (
       <View style={styles.container}>
-        <Interactable.View style={styles.container}
+        <Interactable.View ref="myCard" style={styles.container}
           horizontalOnly={true}
           snapPoints={[
             { x: 390, id: 'keep'}, 
